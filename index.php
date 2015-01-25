@@ -9,5 +9,5 @@ if (isset($action)) {
 } else {
 	$request = new Request();
 	$sock = $request->createSocket();
-	
+	$request->getSlaves($sock);	
 }

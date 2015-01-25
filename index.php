@@ -2,10 +2,12 @@
 
 require_once "request.php";
 
-$request = new Request();
-$request->connect();
-/*$slaves = $request->getConnected();
+$action = $_GET['action'];
 
-foreach ($slaves as $slave) {
+if (isset($action)) {
 	
-}*/
+} else {
+	$request = new Request();
+	$sock = $request->createSocket();
+	
+}

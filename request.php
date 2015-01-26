@@ -7,7 +7,7 @@ class Request {
 	public function createSocket($address = "127.0.0.1", $port = "1335", $password = "PWD") {
 		$sock = socket_create(AF_INET, SOCK_STREAM, 0) or die("Could not create socket\n");
 		
-		socket_connect ($sock, $address, $port) or die("Could not connect to host\n");
+		socket_connect($sock, $address, $port) or die("Could not connect to host\n");
 				
 		self::write($sock, sha1($password));		
 		
@@ -32,6 +32,11 @@ class Request {
 		}
 		
 		return $slaves;
+	}
+	
+	public function disconnect($sock) {
+		self::write($sock, -1);
+		socket_close($sock);
 	}
 	
 	private function write($sock, $s) {

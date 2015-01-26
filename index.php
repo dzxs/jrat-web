@@ -9,6 +9,7 @@ if (isset($_GET['action'])) {
 	$request = new Request();
 	$sock = $request->createSocket();
 	$slaves = $request->getSlaves($sock);	
+	$request->disconnect($sock);
 }
 
 ?>

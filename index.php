@@ -14,6 +14,22 @@ if (isset($_GET['action'])) {
 
 ?>
 
+<script src="jquery-1.11.2.js"></script>
+<script>$(document).ready(function() {
+    $('#selectall').click(function(event) {  //on click 
+        if(this.checked) { // check select status
+            $('.box').each(function() { //loop through each checkbox
+                this.checked = true;  //select all checkboxes with class "checkbox1"               
+            });
+        }else{
+            $('.box').each(function() { //loop through each checkbox
+                this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+            });         
+        }
+    });
+    
+});</script>
+
 <style type="text/css">
 	.tg {
 		border-collapse: collapse;
@@ -72,12 +88,13 @@ if (isset($_GET['action'])) {
 		<th class="tg-s6z2">Display Name</th>
 		<th class="tg-s6z2">Operating System</th>
 		<th class="tg-s6z2">Host</th>
+		<th class="tg-s6z2"><input type="checkbox" class="box" id="selectall"></th>	
 	</tr>
 
 	<?php 
 		$i = 1;
 		foreach ($slaves as $slave) {
-			echo "<tr>" . str_replace("%c", $i++ & 1 ? "tg-vn4c" : "tg-031e", $slave->getTableFormatted()) . "</tr>\n";
+			echo "<tr>" . str_replace("%c", $i++ & 1 ? "tg-vn4c" : "tg-031e", $slave->getTableFormatted($i)) . "</tr>\n";
 		}
 	?>
 </table>

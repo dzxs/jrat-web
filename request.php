@@ -39,7 +39,7 @@ class Request {
 		socket_close($sock);
 	}
 	
-	private function write($sock, $s) {
+	public function write($sock, $s) {
 		socket_write($sock, $s . "\n", strlen($s) + 1) or die("Failed to write to socket\n");
 	}
 }

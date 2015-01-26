@@ -3,19 +3,31 @@ xdebug_disable();
 
 require_once "request.php";
 
-if (isset($_GET['action'])) {
+$request = new Request();
+$sock = $request->createSocket();
+
+if (isset($_POST['select']) && isset($_POST['action'])) {
+	$action = $_POST['action'];
 	
+	if ($action == "disconnect") {
+		$request->write($sock, 10);
+		$request->write($sock, count($_POST['select']));
+	}
+	foreach ($_POST['select'] as $slave) {
+		$request->write($sock, $slave);
+	}
 } else {
-	$request = new Request();
-	$sock = $request->createSocket();
-	$slaves = $request->getSlaves($sock);	
-	$request->disconnect($sock);
+	
 }
+
+$slaves = $request->getSlaves($sock);
+$request->disconnect($sock);
 
 ?>
 
 <script src="jquery-1.11.2.js"></script>
-<script>$(document).ready(function() {
+<script>
+$(document).ready(function() {
     $('#selectall').click(function(event) {  //on click 
         if(this.checked) { // check select status
             $('.box').each(function() { //loop through each checkbox
@@ -82,19 +94,23 @@ if (isset($_GET['action'])) {
 	}
 </style>
 
-<table class="tg">
-	<tr>
-		<th class="tg-s6z2">Country</th>
-		<th class="tg-s6z2">Display Name</th>
-		<th class="tg-s6z2">Operating System</th>
-		<th class="tg-s6z2">Host</th>
-		<th class="tg-s6z2"><input type="checkbox" class="box" id="selectall"></th>	
-	</tr>
-
-	<?php 
-		$i = 1;
-		foreach ($slaves as $slave) {
-			echo "<tr>" . str_replace("%c", $i++ & 1 ? "tg-vn4c" : "tg-031e", $slave->getTableFormatted($i)) . "</tr>\n";
-		}
-	?>
-</table>
+<form method="post">
+	<table class="tg">
+		<tr>
+			<th class="tg-s6z2">Country</th>
+			<th class="tg-s6z2">Display Name</th>
+			<th class="tg-s6z2">Operating System</th>
+			<th class="tg-s6z2">Host</th>
+			<th class="tg-s6z2"><input type="checkbox" class="box" id="selectall"></th>	
+		</tr>
+	
+		<?php 
+			$i = 1;
+			foreach ($slaves as $slave) {
+				echo "<tr>" . str_replace("%c", $i++ & 1 ? "tg-vn4c" : "tg-031e", $slave->getTableFormatted($i)) . "</tr>\n";
+			}
+		?>
+	</table>
+	
+	<input type="submit" name="action" value="disconnect">Disconnect</button>
+</form>

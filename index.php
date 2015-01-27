@@ -82,7 +82,7 @@ $(document).ready(function() {
             <ul class="logout">
                 <li>
                     <a href="logout.php">
-                        <i class="icon-off nav-icon"></i>
+                        <i class="fa fa-off nav-icon"></i>
                         <span class="nav-text">
                             Logout
                         </span>
@@ -92,6 +92,7 @@ $(document).ready(function() {
         </nav>
 
 <section class="wrapper scrollable">
+<div class="col-md-12">
 <div class="panel panel-default panel-block">
 	<div class="list-group">
 		<div class="list-group-item">
@@ -107,6 +108,8 @@ $(document).ready(function() {
 							<th>IP</th>
 							<th>Operating System</th>
 							<th></th>
+							<th><input type="checkbox" class="box" id="selectall"></th>
+							<th>
 						</tr>
 					</thead>
 					<tbody>
@@ -122,14 +125,30 @@ $(document).ready(function() {
 						echo "<td>" . $s . "</td>\n";
 					}
 					
-					foreach ($slaves as $slave) {
+
+					$page = isset($_GET['page']) ? $_GET['page'] : 0;
+					$max = 10;
+					
+					for ($i = $page * $max; $i < $page == 0 ? count($slaves) : $page * $max + $max; $i++) {
+						
+						if (!isset($slaves[$i])) {
+							break;
+						}
+						$slave = $slaves[$i];
+						
+						if (isset($_GET['page'])) {
+							$page = $_GET['page'];
+							
+							
+						}
+						
 						echo "<tr>\n";
 						echo printOut($slave->getDisplayCountry());
 						echo printOut($slave->getIdentifier());
 						echo printOut($slave->getIP());
 						echo printOut($slave->getOperatingSystem());
-						echo printOut("<a href='bots.php?id=" . $slave->getUniqueId() . "'><button type='button'class='btn btn-xs btn-danger'>Delete</button></a>");
-						
+						echo printOut("<a href='bots.php?id=" . $slave->getUniqueId() . "'><button type='button' class='btn btn-xs btn-info'>CP</button></a>");
+						echo printOut("<input class='box' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");
 						echo "</tr>\n";
 					
 					}
@@ -149,6 +168,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 </div>
 </section>

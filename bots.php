@@ -110,7 +110,7 @@ $(document).ready(function() {
 						echo printTableData($slave->getIdentifier());
 						echo printTableData($slave->getIP());
 						echo printTableData($slave->getOperatingSystem());
-						echo printTableData("<a href='bots.php?id=" . $slave->getUniqueId() . "'><button type='button' class='btn btn-xs btn-info'>CP</button></a>");
+						echo printTableData("<a href='bot.php?id=" . $slave->getUniqueId() . "'><button type='button' class='btn btn-xs btn-info'>CP</button></a>");
 						echo printTableData("<input class='box' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");
 						echo "</tr>\n";
 					

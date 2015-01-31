@@ -31,10 +31,13 @@
 
 	<nav class="main-menu">
 		<ul>
-			<li><a href="dashboard.php"> <i class="fa fa-home nav-icon"></i> <span
-					class="nav-text"> Dashboard </span>
+			<li><a href="index.php"> <i class="fa fa-home nav-icon"></i> <span
+					class="nav-text"> Index </span>
 			</a></li>
-
+			
+			<li><a href="bots.php"> <i class="fa fa-table nav-icon"></i> <span
+					class="nav-text"> Connections </span>
+			</a></li>
 		</ul>
 
 		<ul class="logout">

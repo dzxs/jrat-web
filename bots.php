@@ -43,6 +43,8 @@ $(document).ready(function() {
 
 
 <section class="wrapper scrollable">
+	<?php require "layout/menubar.php"; ?>
+	<br>
 	<div class="col-md-12">
 		<div class="panel panel-default panel-block">
 			<div class="list-group">

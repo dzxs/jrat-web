@@ -10,10 +10,20 @@ if (isset($_POST['select'])) {
 	if (isset($_POST['disconnect'])) {
 		$request->write($sock, 10);
 		$request->write($sock, count($_POST ['select']));
+		foreach ($_POST['select'] as $slave) {
+			$request->write($sock, $slave);
+		}
 	}
-	foreach ($_POST['select'] as $slave) {
-		$request->write($sock, $slave);
+
+	if (isset($_POST['command'])) {
+		$s;
+		foreach ($_POST['select'] as $slave) {
+			$s .= $slave . ",";
+		}
+		header("Location: commands.php?bots=" . $s);
+		exit();
 	}
+	
 } else {
 
 }
@@ -54,8 +64,9 @@ $(document).ready(function() {
 
 							<h4 class="section-title">Bot List (<?php echo count($slaves); ?>)</h4>
 							<div class="form-group" align=right>
-								<button type="submit" name="disconnect" class="btn btn-default"><i class="fa fa-home"></i> Disconnect</button>
-
+								<button type="submit" name="disconnect" class="btn btn-default"><i class="fa fa-times"></i> Disconnect</button>
+								<button type="submit" name="command" class="btn btn-default"><i class="fa fa-external-link"></i> Command</button>
+								
 							</div>
 							
 							<table class="table table-bordered table-striped">

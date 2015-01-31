@@ -69,12 +69,7 @@ $(document).ready(function() {
 					<tbody>
 	
 					<?php
-					/*
-					 * $i = 1;
-					 * foreach ($slaves as $slave) {
-					 * echo "<tr>" . str_replace("%c", $i++ & 1 ? "tg-vn4c" : "tg-031e", $slave->getTableFormatted($i)) . "</tr>\n";
-					 * }
-					 */
+
 					function printTableData($s) {
 						echo "<td>" . $s . "</td>\n";
 					}
@@ -126,9 +121,9 @@ $(document).ready(function() {
 						<ul class="pagination pagination-demo">
 							<?php 				
 							$page++;
-							echo '<li><a href="index.php?page=' . ($page - 1) . '">&laquo;</a></li>';
-							echo '<li><a href="index.php?page=' . ($page) . '">' . ($page). '</a></li>';
-							echo '<li><a href="index.php?page=' . ($page + 1) . '">&raquo;</a></li>';
+							echo '<li><a href="bots.php?page=' . ($page - 1) . '">&laquo;</a></li>';
+							echo '<li><a href="bots.php?page=' . ($page) . '">' . ($page). '</a></li>';
+							echo '<li><a href="bots.php?page=' . ($page + 1) . '">&raquo;</a></li>';
 							?>
 							
 						</ul>

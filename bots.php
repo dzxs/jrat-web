@@ -52,8 +52,7 @@ $(document).ready(function() {
 		<div class="list-group-item">
 			<div class="form-group">
 				<h4 class="section-title">Bot List</h4>
-				<!--Basic Table-->
-
+				<form method="POST">
 				<table class="table table-bordered table-striped">
 					<thead class="">
 						<tr>
@@ -119,11 +118,14 @@ $(document).ready(function() {
 	
 					</tbody>
 				</table>
+				</form>
 				<div class="form-group" align="right">
 					<div>
 						<ul class="pagination pagination-demo">
 							<?php 				
-							$page++;
+							if ($page != "all") {
+								$page++;
+							}
 							echo '<li><a href="bots.php?page=' . ($page - 1) . '">&laquo;</a></li>';
 							echo '<li><a href="bots.php?page=' . ($page) . '">' . ($page). '</a></li>';
 							echo '<li><a href="bots.php?page=' . ($page + 1) . '">&raquo;</a></li>';

@@ -77,6 +77,9 @@ $(document).ready(function() {
 
 					$page = isset($_GET['page']) ? $_GET['page'] : "all";
 					
+					if ($page == 0) {
+						$page = "all";
+					}
 					
 					$displayed = 0;
 					

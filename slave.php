@@ -37,4 +37,11 @@ class Slave {
 		$osIcon = '<img src="' . OperatingSystem::getIcon($os) . '"> ' . $os;
 		return $osIcon;
 	}
+	
+	public static function none() {
+		$slave = new Slave();
+		$s = "Nothing found";
+		$slave->makearray($s . ":" . $s . ":" . $s . ":" . $s . ":" . $s);
+		return $slave;
+	}
 }

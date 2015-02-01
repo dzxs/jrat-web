@@ -74,6 +74,7 @@ cont:
 				</div>
 			</div>
 		</div>
+	</div>
 		
 		<?php 
 			foreach ($array as $slave) {

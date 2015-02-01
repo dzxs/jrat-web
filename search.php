@@ -1,6 +1,6 @@
 <?php
 
-require "layout/header.php";
+require_once "layout/header.php";
 
 if (isset($_POST['what']) && isset($_POST['keyword'])) {
 	$what = $_POST['what'];
@@ -29,7 +29,7 @@ cont:
 ?>
 
 <section class="wrapper scrollable">
-	<?php require "layout/menubar.php"; ?>
+	<?php require_once "layout/menubar.php"; ?>
 	<br>
 
 	<div class="col-md-3">
@@ -75,6 +75,6 @@ cont:
 
 <?php
 
-require "layout/footer.php";
+require_once "layout/footer.php";
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-require "layout/header.php";
+require_once "layout/header.php";
 
 if (isset($_GET['clients'])) {
 	$slaves = explode(",", $_GET['clients']);
@@ -9,7 +9,7 @@ if (isset($_GET['clients'])) {
 ?>
 
 <section class="wrapper scrollable">
-	<?php require "layout/menubar.php"; ?>
+	<?php require_once "layout/menubar.php"; ?>
 	<br>
 
 	<div class="col-md-12">
@@ -30,6 +30,6 @@ if (isset($_GET['clients'])) {
 
 <?php
 
-require "layout/footer.php";
+require_once "layout/footer.php";
 
 ?>

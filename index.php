@@ -1,17 +1,17 @@
 <?php
 
-require "layout/header.php";
+require_once "layout/header.php";
 
 ?>
 
 <section class="wrapper scrollable">
-	<?php require "layout/menubar.php"; ?>
+	<?php require_once "layout/menubar.php"; ?>
 	<br>
 
 </section>
 
 <?php
 
-require "layout/footer.php";
+require_once "layout/footer.php";
 
 ?>

@@ -31,7 +31,7 @@ if (isset($_POST['select'])) {
 $slaves = $request->getSlaves($sock);
 $request->disconnect($sock);
 
-require "layout/header.php";
+require_once "layout/header.php";
 
 ?>
 
@@ -61,7 +61,7 @@ $(document).ready(function() {
 
 
 <section class="wrapper scrollable">
-	<?php require "layout/menubar.php"; ?>
+	<?php require_once "layout/menubar.php"; ?>
 	<br>
 	<div class="col-md-12">
 		<div class="panel panel-default panel-block">
@@ -175,6 +175,6 @@ $(document).ready(function() {
 
 <?php 
 
-require "layout/footer.php";
+require_once "layout/footer.php";
 
 ?>

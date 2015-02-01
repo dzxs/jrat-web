@@ -27,12 +27,12 @@ if (!isset($slave)) {
 	exit();
 }
 
-require "layout/header.php";
+require_once "layout/header.php";
 
 ?>
 
 <section class="wrapper scrollable">
-	<?php require "layout/menubar.php"; ?>
+	<?php require_once "layout/menubar.php"; ?>
 	<br>
 	<div class="col-md-3">
 		<div class="panel panel-default panel-block">
@@ -92,5 +92,5 @@ require "layout/header.php";
 
 
 <?php
-require "layout/footer.php";
+require_once "layout/footer.php";
 ?>

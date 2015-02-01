@@ -37,7 +37,7 @@
 					class="nav-text"> Index </span>
 			</a></li>
 			
-			<li><a href="bots.php"> <i class="fa fa-table nav-icon"></i> <span
+			<li><a href="clients.php"> <i class="fa fa-table nav-icon"></i> <span
 					class="nav-text"> Connections </span>
 			</a></li>
 		</ul>

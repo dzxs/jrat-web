@@ -3,7 +3,7 @@
 if (isset($_GET ['id'])) {
 	$id = $_GET ['id'];
 } else {
-	die("No bot selected");
+	die("No client selected");
 }
 
 require_once "request.php";

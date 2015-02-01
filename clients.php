@@ -20,7 +20,7 @@ if (isset($_POST['select'])) {
 		foreach ($_POST['select'] as $slave) {
 			$s .= $slave . ",";
 		}
-		header("Location: commands.php?bots=" . $s);
+		header("Location: commands.php?clients=" . $s);
 		exit();
 	}
 	
@@ -70,7 +70,7 @@ $(document).ready(function() {
 					<div id="table" class="form-group">
 						<form method="POST">
 
-							<h4 class="section-title">Bot List (<?php echo count($slaves); ?>)</h4>
+							<h4 class="section-title">Client List (<?php echo count($slaves); ?>)</h4>
 							<div class="form-group" align=right>
 								<button type="submit" name="disconnect" class="btn btn-default">
 									<i class="fa fa-times"></i> Disconnect
@@ -139,7 +139,7 @@ $(document).ready(function() {
 						echo printTableData($slave->getOperatingSystem());
 						echo printTableData($slave->getVersion());
 						echo printTableData($slave->getPing());
-						echo printTableData("<a href='bot.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");
+						echo printTableData("<a href='client.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");
 						echo printTableData("<input class='box' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");
 						echo "</tr>\n";
 					
@@ -158,9 +158,9 @@ $(document).ready(function() {
 									if ($page != "all") {
 										$page ++;
 									}
-									echo '<li><a href="bots.php?page=' . ($page - 1) . '">&laquo;</a></li>';
-									echo '<li><a href="bots.php?page=' . ($page) . '">' . ($page) . '</a></li>';
-									echo '<li><a href="bots.php?page=' . ($page + 1) . '">&raquo;</a></li>';
+									echo '<li><a href="clients.php?page=' . ($page - 1) . '">&laquo;</a></li>';
+									echo '<li><a href="clients.php?page=' . ($page) . '">' . ($page) . '</a></li>';
+									echo '<li><a href="clients.php?page=' . ($page + 1) . '">&raquo;</a></li>';
 									?>
 									
 								</ul>

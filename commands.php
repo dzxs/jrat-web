@@ -2,8 +2,8 @@
 
 require "layout/header.php";
 
-if (isset($_GET['bots'])) {
-	$slaves = explode(",", $_GET['bots']);
+if (isset($_GET['clients'])) {
+	$slaves = explode(",", $_GET['clients']);
 }
 
 ?>

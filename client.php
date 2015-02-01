@@ -23,7 +23,7 @@ $request->disconnect($sock);
 
 if (!isset($slave)) {
 	notfound:
-	header("Location: find.php");
+	header("Location: search.php");
 	exit();
 }
 
@@ -48,14 +48,14 @@ require "layout/header.php";
 								</tr>
 							</thead>
 							<tbody>
-								<?php 
-									function printTableData($string) {
-										if ($string == "Nothing found") {
-											echo "<td><b><font color='#ff0000'>$string</font></b></td>";
-										} else {
-											echo "<td>" . $string . "</td>";
-										}
+								<?php
+								function printTableData($string) {
+									if ($string == "Nothing found") {
+										echo "<td><b><font color='#ff0000'>$string</font></b></td>";
+									} else {
+										echo "<td>" . $string . "</td>";
 									}
+								}
 								?>
 								<tr>
 									<td>IP</td>
@@ -83,7 +83,14 @@ require "layout/header.php";
 								</tr>
 							</tbody>
 						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 
 <?php
-	require "layout/footer.php";
+require "layout/footer.php";
 ?>

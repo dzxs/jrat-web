@@ -4,5 +4,7 @@
 		</a></li>
 		<li><a href="clients.php"> <i class="fa fa-table"></i> <span>Clients</span>
 		</a></li>
+		<li><a href="search.php"> <i class="fa fa-search"></i> <span>Search</span>
+		</a></li>
 	</ul>
 </nav>

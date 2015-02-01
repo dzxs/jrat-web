@@ -40,6 +40,10 @@
 			<li><a href="clients.php"> <i class="fa fa-table nav-icon"></i> <span
 					class="nav-text"> Connections </span>
 			</a></li>
+			
+			<li><a href="search.php"> <i class="fa fa-search nav-icon"></i> <span
+					class="nav-text"> Search </span>
+			</a></li>
 		</ul>
 
 		<ul class="logout">

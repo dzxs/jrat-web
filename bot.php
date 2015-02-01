@@ -46,21 +46,35 @@ require "layout/header.php";
 								</tr>
 							</thead>
 							<tbody>
-							<?php 
-								function printTableData($string) {
-									if ($string == "Nothing found") {
-										echo "<td><b><font color='#ff0000'>$string</font></b></td>";
-									} else {
-										echo "<td>" . $string . "</td>";
+								<?php 
+									function printTableData($string) {
+										if ($string == "Nothing found") {
+											echo "<td><b><font color='#ff0000'>$string</font></b></td>";
+										} else {
+											echo "<td>" . $string . "</td>";
+										}
 									}
-								}
-							?>
+								?>
 								<tr>
 									<td>IP</td>
 									<?php echo printTableData($slave->getIP()); ?>
 								</tr>
-
-
+								<tr>
+									<td>Identifier</td>
+									<?php echo printTableData($slave->getIdentifier()); ?>
+								</tr>
+								<tr>
+									<td>Country</td>
+									<?php echo printTableData($slave->getDisplayCountry()); ?>
+								</tr>
+								<tr>
+									<td>Operating System</td>
+									<?php echo printTableData($slave->getOperatingSystem()); ?>
+								</tr>
+								<tr>
+									<td>Version</td>
+									<?php echo printTableData($slave->getVersion()); ?>
+								</tr>
 							</tbody>
 						</table>
 

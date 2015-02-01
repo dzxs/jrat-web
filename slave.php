@@ -13,6 +13,7 @@ class Slave {
 				"userstring" => $data[2],
 				"os" => $data[3],
 				"ip" => $data[4],
+				"version" => $data[5],
 		);
 	}
 
@@ -36,6 +37,18 @@ class Slave {
 		$os = $this->array['os'];
 		$osIcon = '<img src="' . OperatingSystem::getIcon($os) . '"> ' . $os;
 		return $osIcon;
+	}
+	
+	public function getVersion() {
+		$ver = $this->array['version'];
+		
+		if (strpos($ver, "jRAT") !== false) {
+			$verIcon = '<img src="images/icons/icon.png"> ' . $ver;
+		} else {
+			$verIcon = $ver;
+		}
+		
+		return $verIcon;
 	}
 	
 	public static function none() {

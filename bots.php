@@ -76,6 +76,7 @@ $(document).ready(function() {
 										<th>Identifier</th>
 										<th>IP</th>
 										<th>Operating System</th>
+										<th>Version</th>
 										<th></th>
 										<th><input type="checkbox" class="box" id="selectall"></th>
 									</tr>
@@ -123,6 +124,7 @@ $(document).ready(function() {
 						echo printTableData($slave->getIdentifier());
 						echo printTableData($slave->getIP());
 						echo printTableData($slave->getOperatingSystem());
+						echo printTableData($slave->getVersion());
 						//echo printTableData("<a href='bot.php?id=" . $slave->getUniqueId() . "'><button type='button' class='btn btn-xs btn-info'>CP</button></a>");
 						echo printTableData("<a href='bot.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");
 						echo printTableData("<input class='box' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");

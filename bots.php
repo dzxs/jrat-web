@@ -35,6 +35,13 @@ require "layout/header.php";
 
 ?>
 
+<script type="text/javascript">
+    setInterval("reload_table();", 1000); 
+    function reload_table(){
+      $('#refresh').load(location.href + ' #table');
+    }
+</script>
+
 <script>
 $(document).ready(function() {
     $('#selectall').click(function(event) {
@@ -49,7 +56,8 @@ $(document).ready(function() {
         }
     });
     
-});</script>
+});
+</script>
 
 
 <section class="wrapper scrollable">
@@ -58,17 +66,21 @@ $(document).ready(function() {
 	<div class="col-md-12">
 		<div class="panel panel-default panel-block">
 			<div class="list-group">
-				<div class="list-group-item">
-					<div class="form-group">
+				<div id="refresh" class="list-group-item">
+					<div id="table" class="form-group">
 						<form method="POST">
 
 							<h4 class="section-title">Bot List (<?php echo count($slaves); ?>)</h4>
 							<div class="form-group" align=right>
-								<button type="submit" name="disconnect" class="btn btn-default"><i class="fa fa-times"></i> Disconnect</button>
-								<button type="submit" name="command" class="btn btn-default"><i class="fa fa-external-link"></i> Command</button>
-								
+								<button type="submit" name="disconnect" class="btn btn-default">
+									<i class="fa fa-times"></i> Disconnect
+								</button>
+								<button type="submit" name="command" class="btn btn-default">
+									<i class="fa fa-external-link"></i> Command
+								</button>
+
 							</div>
-							
+
 							<table class="table table-bordered table-striped">
 								<thead class="">
 									<tr>

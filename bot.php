@@ -75,6 +75,10 @@ require "layout/header.php";
 									<td>Version</td>
 									<?php echo printTableData($slave->getVersion()); ?>
 								</tr>
+								<tr>
+									<td>Ping</td>
+									<?php echo printTableData($slave->getPing()); ?>
+								</tr>
 							</tbody>
 						</table>
 

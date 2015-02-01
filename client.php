@@ -1,11 +1,12 @@
 <?php
 
-if (isset($_GET ['id'])) {
-	$id = $_GET ['id'];
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
 } else {
-	die("No client selected");
+	goto notfound;
 }
 
+require_once "slave.php";
 require_once "request.php";
 
 $request = new Request();
@@ -21,8 +22,9 @@ foreach ($slaves as $aslave) {
 $request->disconnect($sock);
 
 if (!isset($slave)) {
-	require_once "slave.php";
-	$slave = Slave::none();
+	notfound:
+	header("Location: find.php");
+	exit();
 }
 
 require "layout/header.php";

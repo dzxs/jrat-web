@@ -3,7 +3,7 @@
 ?>
 
 <html>
-
+<head>
 <script src="layout/jquery-1.11.2.js"></script>
 <script src="layout/bootstrap.min.js"></script>
 <script src="layout/modernizr.js"></script>
@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="layout/select2.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <link rel="stylesheet" href="layout/font-titillium.css">
+
+</head>
 
 <body class="dashboard-page">
 	<script>

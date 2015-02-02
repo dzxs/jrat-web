@@ -35,7 +35,6 @@ cont:
 <section class="wrapper scrollable">
 	<?php require_once "layout/menubar.php"; ?>
 	<br>
-
 	<div class="col-md-3">
 		<div class="panel panel-default panel-block">
 			<div class="list-group">
@@ -77,6 +76,7 @@ cont:
 	</div>
 		
 		<?php 
+			$size = 5;
 			foreach ($array as $slave) {
 				require "tabledata.php";
 			}

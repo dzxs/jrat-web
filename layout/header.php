@@ -4,18 +4,25 @@
 
 <html>
 <head>
-<script src="layout/jquery-1.11.2.js"></script>
-<script src="layout/bootstrap.min.js"></script>
-<script src="layout/modernizr.js"></script>
-<script src="layout/proton.js"></script>
+<link rel="stylesheet" href="styles/bootstrap.css">
 
-<link rel="stylesheet" href="layout/animate.css">
-<link rel="stylesheet" href="layout/bootstrap.css">
-<link rel="stylesheet" href="layout/jquery.pnotify.default.css">
-<link rel="stylesheet" href="layout/proton.css">
-<link rel="stylesheet" href="layout/select2.css">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<link rel="stylesheet" href="layout/font-titillium.css">
+<link rel="stylesheet" href="styles/vendor/jquery.pnotify.default.css">
+<link rel="stylesheet" href="styles/vendor/select2/select2.css">
+
+<link rel="stylesheet" href="styles/proton.css">
+<link rel="stylesheet" href="styles/vendor/animate.css">
+
+<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+	<script src="scripts/vendor/respond.min.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="styles/font-awesome.css" type="text/css" />
+<link rel="stylesheet" href="styles/font-titillium.css" type="text/css" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="scripts/vendor/modernizr.js"></script>
+<script src="scripts/vendor/jquery.cookie.js"></script>
 
 </head>
 
@@ -27,30 +34,25 @@
 	        });
 	        if (theme !== 'default') $('body').addClass(theme);
     </script>
-	<!--[if lt IE 8]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 
 	<nav class="main-menu">
 		<ul>
-			<li><a href="index.php"> <i class="fa fa-home nav-icon"></i> <span
+			<li><a href="index.php"> <i class="icon-home nav-icon"></i> <span
 					class="nav-text"> Index </span>
 			</a></li>
-			
-			<li><a href="clients.php"> <i class="fa fa-table nav-icon"></i> <span
+
+			<li><a href="clients.php"> <i class="icon-table nav-icon"></i> <span
 					class="nav-text"> Connections </span>
 			</a></li>
-			
-			<li><a href="search.php"> <i class="fa fa-search nav-icon"></i> <span
+
+			<li><a href="search.php"> <i class="icon-search nav-icon"></i> <span
 					class="nav-text"> Search </span>
 			</a></li>
 		</ul>
 
 		<ul class="logout">
-			<li><a href="logout.php"> <i class="fa fa-off nav-icon"></i> <span
+			<li><a href="logout.php"> <i class="icon-off nav-icon"></i> <span
 					class="nav-text"> Logout </span>
 			</a></li>
 		</ul>
 	</nav>
-	
-	

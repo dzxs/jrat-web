@@ -73,10 +73,10 @@ $(document).ready(function() {
 							<h4 class="section-title">Client List (<?php echo count($slaves); ?>)</h4>
 							<div class="form-group" align=right>
 								<button type="submit" name="disconnect" class="btn btn-default">
-									<i class="fa fa-times"></i> Disconnect
+									<i class="icon-times"></i> Disconnect
 								</button>
 								<button type="submit" name="command" class="btn btn-default">
-									<i class="fa fa-external-link"></i> Command
+									<i class="icon-external-link"></i> Command
 								</button>
 
 							</div>

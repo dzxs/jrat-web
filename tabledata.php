@@ -1,5 +1,11 @@
 
-<div class="col-md-3">
+<div class="col-md-<?php 
+	if (!isset($size)) {
+		$size = 3;
+	}
+	
+	echo $size;
+?>">
 	<div class="panel panel-default panel-block">
 		<div class="list-group">
 			<div class="list-group-item">

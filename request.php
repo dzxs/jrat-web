@@ -15,7 +15,7 @@ class Request {
 	}
 	
 	public function getSlaves($sock) {
-		self::write($sock, 1);
+		$this->write($sock, 1);
 		$raw = socket_read($sock, 1024 * 10, PHP_NORMAL_READ) or die("Could not read from socket\n");
 		
 		$slaveStrings = explode(";", $raw);
@@ -28,10 +28,29 @@ class Request {
 
 			$s = new Slave();
 			$s->makearray($string);
-			$slaves[] = $s;
+			array_push($slaves, $s);
 		}
 		
 		return $slaves;
+	}
+	
+	public function getCountryStats($sock) {
+		$this->write($sock, 12);
+		$raw = socket_read($sock, 1024 * 10, PHP_NORMAL_READ) or die("Could not read from socket\n");
+		
+		$rawStrings = explode(";", $raw);
+		$countries = array();
+		
+		foreach ($rawStrings as $string) {
+			if (strlen($string) <= 1) {
+				continue;
+			}
+		
+			$split = explode(",", $string);
+			$countries[$split[0]] = $split[1];
+		}
+		
+		return $countries;
 	}
 	
 	public function disconnect($sock) {

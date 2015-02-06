@@ -1,5 +1,7 @@
 <?php
+
 require_once "operatingsystem.php";
+require_once "countries.php";
 
 class Slave {
 

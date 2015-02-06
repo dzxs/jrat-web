@@ -1,7 +1,7 @@
 
 <div class="col-md-<?php 
 	if (!isset($size)) {
-		$size = 3;
+		$size = 5;
 	}
 	
 	echo $size;
@@ -34,28 +34,32 @@
 														
 							<tr>
 								<td>IP</td>
-									<?php echo printTableData($slave->getIP()); ?>
-								</tr>
+								<?php echo printTableData($slave->getIP()); ?>
+							</tr>
+							<tr>
+								<td>Reverse DNS</td>
+								<?php echo printTableData(gethostbyaddr(explode(" / ", $slave->getIP())[0])); ?>
+							</tr>
 							<tr>
 								<td>Identifier</td>
-									<?php echo printTableData($slave->getIdentifier()); ?>
-								</tr>
+								<?php echo printTableData($slave->getIdentifier()); ?>
+							</tr>
 							<tr>
 								<td>Country</td>
 									<?php echo printTableData($slave->getDisplayCountry()); ?>
-								</tr>
+							</tr>
 							<tr>
 								<td>Operating System</td>
-									<?php echo printTableData($slave->getOperatingSystem()); ?>
-								</tr>
+								<?php echo printTableData($slave->getOperatingSystem()); ?>
+							</tr>
 							<tr>
 								<td>Version</td>
-									<?php echo printTableData($slave->getVersion()); ?>
-								</tr>
+								<?php echo printTableData($slave->getVersion()); ?>
+							</tr>
 							<tr>
 								<td>Ping</td>
-									<?php echo printTableData($slave->getPing()); ?>
-								</tr>
+								<?php echo printTableData($slave->getPing()); ?>
+							</tr>
 						</tbody>
 					</table>
 				</div>

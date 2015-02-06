@@ -5,8 +5,7 @@ require_once "request.php";
 $request = new Request();
 $sock = $request->createSocket();
 
-$slaves = $request->getCountryStats($sock);
-var_dump($slaves);
+$countryStats = $request->getCountryStats($sock);
 $request->disconnect($sock);
 
 
@@ -26,13 +25,26 @@ require_once "layout/header.php";
 				</div>
 				<ul class="list-group">
 
+				<?php 
+					arsort($countryStats);
+					$numberValues = array_values($countryStats);
+					for ($i = 0; $i < 5 && $i < count($countryStats); $i++) {
+						echo '<li class="list-group-item"><div class="text-holder"><span class="title-text"> ';
+						echo $numberValues[$i];
+						echo ' </span> <span class="description-text"> ';
+						echo key($countryStats);
+						next($countryStats);
+						echo '</span></div> <span class="stat-value"> ';
+						echo " + 0 ";
+						echo '<i class="icon-sort"></i></span>';
+					}
+				?>
 					<li class="list-group-item">
 						<div class="text-holder">
 							<span class="title-text"> 20 </span> <span
 								class="description-text"> Windows XP </span>
-						</div> <span class="stat-value"> + 0 <i class="icon-sort"></i>
-					</span>
-					</li>
+						</div> <span class="stat-value"> + 0 <i class="icon-sort"></i></span>
+					</li>			
 				</ul>
 			</div>
 		</div>

@@ -53,6 +53,26 @@ class Request {
 		return $countries;
 	}
 	
+	public function getOperatingSystemStats($sock) {
+		$this->write($sock, 13);
+		$raw = socket_read($sock, 1024 * 10, PHP_NORMAL_READ) or die("Could not read from socket\n");
+	
+		$rawStrings = explode(";", $raw);
+		$os = array();
+	
+		foreach ($rawStrings as $string) {
+			if (strlen($string) <= 1) {
+				continue;
+			}
+	
+			$split = explode(",", $string);
+			$os[$split[0]] = $split[1];
+		}
+	
+		return $os;
+	}
+
+	
 	public function disconnect($sock) {
 		self::write($sock, -1);
 		socket_close($sock);

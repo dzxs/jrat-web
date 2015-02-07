@@ -5,6 +5,8 @@ class OperatingSystem {
 	static $icons = array(
 			"Windows 8" => "os_win8",
 			"Windows 8.1" => "os_win8",
+			"Windows 2000" => "os_win2000",
+			"Windows XP" => "os_winxp",
 			"Windows" => "os",
 			"Mac OS X" => "os_mac",
 			"Ubuntu" => "dist_ubuntu",
@@ -27,7 +29,7 @@ class OperatingSystem {
 			"FreeBSD" => "os_freebsd",
 			"Solaris" => "os_solaris",
 			"Android" => "os_android",
-			"Other" => "os_other",
+			"Other" => "os_unknown",
 	
 	);
 	

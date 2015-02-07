@@ -259,10 +259,9 @@ class Countries {
 	
 	
 	
-	public static 
-function short2long($country = "Unknown") {
-	return self::$countries [strtoupper($country)];
-}
+	public static function short2long($country = "Unknown") {
+		return self::$countries[strtoupper($country)];
+	}
 	
 	public static function long2short($country = "Unknown") {
 		return array_search($country, self::$countries);

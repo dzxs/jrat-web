@@ -71,7 +71,11 @@ $(document).ready(function() {
 						<form method="POST">
 
 							<h4 class="section-title">Client List (<?php echo count($slaves); ?>)</h4>
+							
 							<div class="form-group" align=right>
+								<button type="submit" name="reload" class="btn btn-success">
+									<i class="icon-times"></i> Reload
+								</button>
 								<button type="submit" name="disconnect" class="btn btn-default">
 									<i class="icon-times"></i> Disconnect
 								</button>

@@ -25,7 +25,7 @@ class Slave {
 	}
 	
 	public function getDisplayCountry() {
-		return $country = '<img src="images/flags/' . strtolower($this->array['country']) . '.png"> ' . $this->array['country'];
+		return $country = '<img src="images/flags/' . Countries::short2long(strtolower($this->array['country'])) . '.png"> ' . $this->array['country'];
 	}
 	
 	public function getIdentifier() {

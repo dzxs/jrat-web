@@ -46,12 +46,7 @@ require_once "layout/header.php";
 						echo '<i class="icon-sort"></i></span>';
 					}
 				?>
-					<li class="list-group-item">
-						<div class="text-holder">
-							<span class="title-text"> 20 </span> <span
-								class="description-text"> Windows XP </span>
-						</div> <span class="stat-value"> + 0 <i class="icon-sort"></i></span>
-					</li>			
+							
 				</ul>
 			</div>
 		</div>

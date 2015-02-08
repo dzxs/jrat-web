@@ -11,17 +11,22 @@ class Slave {
 		$data = explode(":", $s);
 		$this->array = array(
 				"id" => $data[0],
-				"country" => $data[1],
-				"userstring" => $data[2],
-				"os" => $data[3],
-				"ip" => $data[4],
-				"version" => $data[5],
-				"ping" => $data[6],
+				"selected" => $data[1],
+				"country" => $data[2],
+				"userstring" => $data[3],
+				"os" => $data[4],
+				"ip" => $data[5],
+				"version" => $data[6],
+				"ping" => $data[7],
 		);
 	}
 
 	public function getUniqueId() {
 		return $this->array['id'];
+	}
+	
+	public function isSelected() {
+		return $this->array['selected'];
 	}
 	
 	public function getDisplayCountry() {

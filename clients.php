@@ -8,9 +8,11 @@ $sock = $request->createSocket();
 
 if (isset($_POST['id'])) {
 	$selectedid = $_POST['id'];
+	$checked = $_POST['checked'];
 	
 	$request->write($sock, 5);
 	$request->write($sock, $selectedid);
+	$request->write($sock, $checked);
 }
 
 if (isset($_POST['select'])) {
@@ -43,7 +45,7 @@ require_once "layout/header.php";
 ?>
 
 <script type="text/javascript">
-    //setInterval("reload_table();", 1000); 
+    // setInterval("reload_table();", 1000); 
     function reload_table(){
       $('#refresh').load(location.href + ' #table');
     }
@@ -51,7 +53,7 @@ require_once "layout/header.php";
 
 <script>
 $(document).ready(function() {
-   /* $('#selectall').click(function(event) {
+    $('#selectall').click(function(event) {
         if (this.checked) { 
             $('.box').each(function() {
                 this.checked = true;          
@@ -61,12 +63,13 @@ $(document).ready(function() {
                 this.checked = false;            
             });         
         }
-    });*/
+    });
 
     $('#selectall').click(function(event) {
     	$.post("clients.php",
     			{
-        	    	id: this.checked ? "all" : "none",
+        	    	id: "all",
+        	    	checked: this.checked,
         	    },
         	    function(data, status) {
         		   	// alert("Data: " + data + "\nStatus: " + status);
@@ -78,6 +81,7 @@ $(document).ready(function() {
     	$.post("clients.php",
 			{
     	    	id: this.value,
+    	    	checked: this.checked,
     	    },
     	    function(data, status) {
     		   	// alert("Data: " + data + "\nStatus: " + status);
@@ -174,7 +178,7 @@ $(document).ready(function() {
 						echo printTableData($slave->getVersion());
 						echo printTableData($slave->getPing());
 						echo printTableData("<a href='client.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");
-						echo printTableData("<input class='box' id='update' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "'" . $checked . ">");
+						echo printTableData("<input class='box' id='update' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "' " . $checked . ">");
 						echo "</tr>\n";
 					
 					}

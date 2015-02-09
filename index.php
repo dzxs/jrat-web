@@ -7,16 +7,16 @@ require_once "operatingsystem.php";
 $request = new Request();
 $sock = $request->createSocket();
 
-echo "-------------------------------------------- " . strpos($sock, "Error: ") . " ----------------------------------------";
-
-if (strpos($sock, "Error: ") == 1) {
-	die("Error detected"); // Work here
+if ($request->isError($sock)) {
+	require_once "error.php";
+	//goto error;
 }
 
 $countryStats = $request->getCountryStats($sock);
 $osStats = $request->getOperatingSystemStats($sock);
 $request->disconnect($sock);
 
+error:
 
 require_once "layout/header.php";
 

@@ -8,15 +8,13 @@ $request = new Request();
 $sock = $request->createSocket();
 
 if ($request->isError($sock)) {
-	require_once "error.php";
-	//goto error;
+	header("Location: error.php?desc=" . str_replace(" Error: ", "", $sock));
+	exit();
 }
 
 $countryStats = $request->getCountryStats($sock);
 $osStats = $request->getOperatingSystemStats($sock);
 $request->disconnect($sock);
-
-error:
 
 require_once "layout/header.php";
 

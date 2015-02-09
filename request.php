@@ -9,13 +9,11 @@ class Request {
 		
 		socket_connect($sock, $address, $port);
 		$error = socket_strerror(socket_last_error($sock));
-		echo "Error String: " . $error . "<br>";
 		if (strpos($error, "successfully") === false) {
-			echo "Did not detect successfully in string<br>";
 			return " Error: " . $error;
 		}
 				
-		self::write($sock, sha1($password));		
+		$this->write($sock, sha1($password));		
 		
 		return $sock;
 	}
@@ -89,6 +87,6 @@ class Request {
 	}
 	
  	public function isError($sock) {
- 		return strpos($sock, "Error: ") !== false;
+ 		return strpos($sock, "Error") == 1;
  	}
 }

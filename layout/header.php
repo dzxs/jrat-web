@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="styles/font-titillium.css" type="text/css" />
 
 <style>
-* {
+.panel {
   border-radius: 0 !important;
 }
 </style>

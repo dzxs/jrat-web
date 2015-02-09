@@ -20,6 +20,12 @@
 <link rel="stylesheet" href="styles/font-awesome.css" type="text/css" />
 <link rel="stylesheet" href="styles/font-titillium.css" type="text/css" />
 
+<style>
+* {
+  border-radius: 0 !important;
+}
+</style>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="scripts/vendor/modernizr.js"></script>
 <script src="scripts/vendor/jquery.cookie.js"></script>

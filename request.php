@@ -1,12 +1,15 @@
 <?php
 
 require_once "slave.php";
+require_once "config.php";
 
 class Request {
 	
 	public $sock;
 	
-	public function createSocket($address = "127.0.0.1", $port = "1335", $password = "PWD") {
+	public function createSocket($address = "127.0.0.1", $port = "1335", $pass = "PWD") {
+		Config::loadAuth();
+		
 		$this->sock = socket_create(AF_INET, SOCK_STREAM, 0) or die("Could not create socket\n");
 		
 		socket_connect($this->sock, $address, $port);
@@ -17,7 +20,7 @@ class Request {
 			return $error;
 		}
 				
-		$this->write(sha1($password));		
+		$this->write(sha1($pass));		
 		
 		return "";
 	}

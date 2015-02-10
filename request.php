@@ -12,7 +12,9 @@ class Request {
 		socket_connect($this->sock, $address, $port);
 		$error = socket_strerror(socket_last_error($this->sock));
 		if (strpos($error, "successfully") === false) {
-			return " Error: " . $error;
+			$error = " Error: " . $error;
+			$this->sock = $error;
+			return $error;
 		}
 				
 		$this->write(sha1($password));		
@@ -94,7 +96,7 @@ class Request {
  	
  	public function redirectError() {
  		if ($this->isError()) {
- 			header("Location: error.php?desc=" . str_replace(" Error: ", "", $sock));
+ 			header("Location: error.php?desc=" . str_replace(" Error: ", "", $this->sock));
  			exit();
  		}
  	}

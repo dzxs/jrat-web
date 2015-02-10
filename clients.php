@@ -15,17 +15,17 @@ if (isset($_POST['id'])) {
 	$selectedid = $_POST['id'];
 	$checked = $_POST['checked'];
 	
-	$request->write($sock, 5);
-	$request->write($sock, $selectedid);
-	$request->write($sock, $checked);
+	$request->write(5);
+	$request->write($selectedid);
+	$request->write($checked);
 }
 
 if (isset($_POST['select'])) {
 	if (isset($_POST['disconnect'])) {
-		$request->write($sock, 10);
-		$request->write($sock, count($_POST['select']));
+		$request->write(10);
+		$request->write(count($_POST['select']));
 		foreach ($_POST['select'] as $slave) {
-			$request->write($sock, $slave);
+			$request->write($slave);
 		}
 	}
 	

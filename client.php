@@ -11,7 +11,7 @@ require_once "request.php";
 
 $request = new Request();
 $sock = $request->createSocket();
-$slaves = $request->getSlaves($sock);
+$slaves = $request->getSlaves();
 
 foreach ($slaves as $aslave) {
 	if ($aslave->getUniqueId() == $id) {
@@ -19,7 +19,7 @@ foreach ($slaves as $aslave) {
 	}
 }
 
-$request->disconnect($sock);
+$request->disconnect();
 
 if (!isset($slave)) {
 	notfound:

@@ -7,14 +7,14 @@ require_once "operatingsystem.php";
 $request = new Request();
 $sock = $request->createSocket();
 
-if ($request->isError($sock)) {
+if ($request->isError()) {
 	header("Location: error.php?desc=" . str_replace(" Error: ", "", $sock));
 	exit();
 }
 
-$countryStats = $request->getCountryStats($sock);
-$osStats = $request->getOperatingSystemStats($sock);
-$request->disconnect($sock);
+$countryStats = $request->getCountryStats();
+$osStats = $request->getOperatingSystemStats();
+$request->disconnect();
 
 require_once "layout/header.php";
 

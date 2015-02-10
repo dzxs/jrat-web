@@ -46,7 +46,7 @@
 							</tr>
 							<tr>
 								<td>Country</td>
-									<?php echo printTableData($slave->getDisplayCountry()); ?>
+								<?php echo printTableData($slave->getDisplayCountry()); ?>
 							</tr>
 							<tr>
 								<td>Operating System</td>

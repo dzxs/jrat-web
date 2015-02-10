@@ -14,12 +14,10 @@ if (isset($_POST['what']) && isset($_POST['keyword'])) {
 	
 	$request = new Request();
 	$sock = $request->createSocket();
-	$slaves = $request->getSlaves($sock);
-	$request->disconnect($sock);
+	$slaves = $request->getSlaves();
+	$request->disconnect();
 	
-	$array = array(
-			
-	);
+	$array = array();
 	
 	foreach ($slaves as $aslave) {
 		if (strpos(strtolower($aslave->array[$what]), strtolower($keyword)) !== false) {

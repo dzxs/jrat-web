@@ -6,7 +6,7 @@ require_once "request.php";
 $request = new Request();
 $sock = $request->createSocket();
 
-if ($request->isError($sock)) {
+if ($request->isError()) {
 	header("Location: error.php?desc=" . str_replace(" Error: ", "", $sock));
 	exit();
 }
@@ -42,8 +42,8 @@ if (isset($_POST['select'])) {
 
 }
 
-$slaves = $request->getSlaves($sock);
-$request->disconnect($sock);
+$slaves = $request->getSlaves();
+$request->disconnect();
 
 require_once "layout/header.php";
 

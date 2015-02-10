@@ -11,6 +11,9 @@ require_once "request.php";
 
 $request = new Request();
 $sock = $request->createSocket();
+
+$request->redirectError();
+
 $slaves = $request->getSlaves();
 
 foreach ($slaves as $aslave) {

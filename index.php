@@ -7,10 +7,7 @@ require_once "operatingsystem.php";
 $request = new Request();
 $sock = $request->createSocket();
 
-if ($request->isError()) {
-	header("Location: error.php?desc=" . str_replace(" Error: ", "", $sock));
-	exit();
-}
+$request->redirectError();
 
 $countryStats = $request->getCountryStats();
 $osStats = $request->getOperatingSystemStats();

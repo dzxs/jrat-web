@@ -6,10 +6,7 @@ require_once "request.php";
 $request = new Request();
 $sock = $request->createSocket();
 
-if ($request->isError()) {
-	header("Location: error.php?desc=" . str_replace(" Error: ", "", $sock));
-	exit();
-}
+$request->redirectError();
 
 if (isset($_POST['id'])) {
 	$selectedid = $_POST['id'];

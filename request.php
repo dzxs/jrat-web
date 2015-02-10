@@ -91,4 +91,11 @@ class Request {
  	public function isError() {
  		return strpos($this->sock, "Error") == 1;
  	}
+ 	
+ 	public function redirectError() {
+ 		if ($this->isError()) {
+ 			header("Location: error.php?desc=" . str_replace(" Error: ", "", $sock));
+ 			exit();
+ 		}
+ 	}
 }

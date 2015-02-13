@@ -79,6 +79,10 @@ class Slave {
 		return '<img src="images/icons/ping' . $icon . '.png"> ' . $ping . ' ms';
 	}
 	
+	public function getSessionId() {
+		return md5(implode(":", $array));
+	}
+	
 	public static function none() {
 		$slave = new Slave();
 		$s = "Nothing found";

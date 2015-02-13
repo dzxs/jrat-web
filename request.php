@@ -45,8 +45,22 @@ class Request {
 		return $slaves;
 	}
 	
+	public function getOfflineClients() {
+		$this->write(14);	
+		$raw = socket_read($this->sock, 1024 * 10, PHP_NORMAL_READ) or die("Could not read from socket\n");
+
+		$rawStrings = explode(";", $raw);
+		$slaves = array();
+		
+		foreach ($rawStrings as $string) {
+			array_push($slaves, explode(":", $string));
+		}
+		
+		return $slaves;
+	}
+	
 	public function getCountryStats() {
-		$this->write( 12);
+		$this->write(12);
 		$raw = socket_read($this->sock, 1024 * 10, PHP_NORMAL_READ) or die("Could not read from socket\n");
 		
 		$rawStrings = explode(";", $raw);
@@ -94,7 +108,7 @@ class Request {
 	}
 	
  	public function isError() {
- 		return strpos($this->sock, "Error") == 1;
+ 		return is_string($this->sock) && strpos($this->sock, "Error") == 1;
  	}
  	
  	public function redirectError() {

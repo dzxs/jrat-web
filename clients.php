@@ -122,6 +122,7 @@ $(document).ready(function() {
 							<table class="table table-bordered table-striped">
 								<thead class="">
 									<tr>
+										<th>ID</th>
 										<th>Country</th>
 										<th>Identifier</th>
 										<th>IP</th>
@@ -173,6 +174,7 @@ $(document).ready(function() {
 						$checked = $slave->isSelected() === "true" ? "checked" : "";
 						
 						echo "<tr>\n";
+						echo printTableData($slave->getStringId());
 						echo printTableData($slave->getDisplayCountry());
 						echo printTableData($slave->getIdentifier());
 						echo printTableData($slave->getIP());

@@ -10,16 +10,21 @@ class Slave {
 	public function makearray($s) {
 		$data = explode(":", $s);
 		$this->array = array(
-				"id" => $data[0],
-				"selected" => $data[1],
-				"country" => $data[2],
-				"userstring" => $data[3],
-				"os" => $data[4],
-				"ip" => $data[5],
-				"version" => $data[6],
-				"ping" => $data[7],
+				"strid" => $data[0],
+				"id" => $data[1],
+				"selected" => $data[2],
+				"country" => $data[3],
+				"userstring" => $data[4],
+				"os" => $data[5],
+				"ip" => $data[6],
+				"version" => $data[7],
+				"ping" => $data[8],
 		);
 	}
+	
+ 	public function getStringId() {
+ 		return $this->array['strid'];
+ 	}
 
 	public function getUniqueId() {
 		return $this->array['id'];

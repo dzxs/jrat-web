@@ -83,16 +83,6 @@ class Slave {
 		return md5(implode(":", $this->array));
 	}
 	
-	public function getOfflineInfo() {
-		$array = array(
-				$this->array['os'],
-				$this->array['userstring'],
-				explode(" / ", $this->array['ip'])[0],
-		);
-		
-		return implode(":", $array);
-	}
-	
 	public static function none() {
 		$slave = new Slave();
 		$s = "Nothing found";

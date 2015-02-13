@@ -53,7 +53,25 @@ class Request {
 		$slaves = array();
 		
 		foreach ($rawStrings as $string) {
-			array_push($slaves, explode(":", $string));
+			$data = explode(":", $string);
+			
+			if (strlen($string) <= 1) {
+				continue;
+			}
+			
+			$s = new Slave();
+			$s->array = array(
+				"strid" => $data[0],
+				"id" => "0",
+				"selected" => "false",
+				"country" => "se",
+				"userstring" => $data[1],
+				"os" => $data[3],
+				"ip" => $data[2],
+				"version" => $data[4],
+				"ping" => "",
+			);
+			array_push($slaves, $s);
 		}
 		
 		return $slaves;

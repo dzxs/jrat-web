@@ -65,27 +65,35 @@ class Slave {
 	}
 	
 	public function getPing() {
-		$ping = $this->array['ping'];
-		
-		if ($ping < 50) {
-			$icon = 0;
-		} else if ($ping < 100) {
-			$icon = 1;
-		} else if ($ping < 200) {
-			$icon = 2;
-		} else if ($ping < 400) {
-			$icon = 3;
-		} else if ($ping < 1000) {
-			$icon = 4;
+		if ($this->isOffline()) {
+			return '<button type="submit" name="command" class="btn btn-danger btn-xs"> Offline';
 		} else {
-			$icon = 5;
+			$ping = $this->array['ping'];
+			
+			if ($ping < 50) {
+				$icon = 0;
+			} else if ($ping < 100) {
+				$icon = 1;
+			} else if ($ping < 200) {
+				$icon = 2;
+			} else if ($ping < 400) {
+				$icon = 3;
+			} else if ($ping < 1000) {
+				$icon = 4;
+			} else {
+				$icon = 5;
+			}
+			
+			return '<img src="images/icons/ping' . $icon . '.png"> ' . $ping . ' ms';
 		}
-		
-		return '<img src="images/icons/ping' . $icon . '.png"> ' . $ping . ' ms';
 	}
 	
 	public function getSessionId() {
 		return md5(implode(":", $this->array));
+	}
+	
+	public function isOffline() {
+		return $this->array['id'] == "0";
 	}
 	
 	public static function none() {

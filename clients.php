@@ -40,7 +40,12 @@ if (isset($_POST['select'])) {
 }
 
 $slaves = $request->getSlaves();
+$offline = $request->getOfflineClients();
 $request->disconnect();
+
+$slaves = array_merge($slaves, $offline);
+
+$count = count($slaves);
 
 require_once "layout/header.php";
 
@@ -104,7 +109,7 @@ $(document).ready(function() {
 					<div id="table" class="form-group">
 						<form method="POST">
 
-							<h4 class="section-title">Client List (<?php echo count($slaves); ?>)</h4>
+							<h4 class="section-title">Client List (<?php echo $count; ?>)</h4>
 
 							<div class="form-group" align=right>
 								<button type="submit" name="reload" class="btn btn-success">
@@ -151,7 +156,7 @@ $(document).ready(function() {
 					
 					if ($page == "all") {
 						$start = 0;
-						$max = count($slaves);
+						$max = $count;
 					} else {
 						$page --;
 						

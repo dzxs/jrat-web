@@ -23,10 +23,12 @@ class OperatingSystem {
 			"LXLE" => "dist_lxle",
 			"Fedora" => "dist_fedora",
 			"Mageia" => "dist_mageia",
+			"Alpine" => "dist_alpine",
 			"Crunchbang" => "dist_crunchbang",
 			"Linux" => "os_linux",
 			"OpenBSD" => "os_openbsd",
 			"FreeBSD" => "os_freebsd",
+			"NetBSD" => "os_netbsd",
 			"Solaris" => "os_solaris",
 			"Android" => "os_android",
 			"Other" => "os_unknown",
@@ -36,10 +38,14 @@ class OperatingSystem {
 	public static function getIcon($os) {
 		foreach (self::$icons as $name => $icon) {
  			if (strpos(strtolower($os), strtolower($name)) === 0) {
- 				return "images/icons/" . $icon . ".png";
+ 				$file = "images/icons/" . $icon . ".png";
+ 				if (!file_exists($file)) {
+ 					continue;
+ 				}
+ 				return $file;
  			}
 		}
 		
-		return "images/icons/os_other.png";
+		return "images/icons/os_unknown.png";
 	}
 }

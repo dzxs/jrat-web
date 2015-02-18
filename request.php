@@ -7,10 +7,12 @@ class Request {
 	
 	public $sock;
 	
-	public function createSocket($address = "127.0.0.1", $port = "1335", $pass = "PWD") {		
+	public function createSocket() {
+		require_once "config.php";
+		
 		$this->sock = socket_create(AF_INET, SOCK_STREAM, 0) or die("Could not create socket\n");
 		
-		socket_connect($this->sock, $address, $port);
+		socket_connect($this->sock, ADDRESS, PORT);
 		$error = socket_strerror(socket_last_error($this->sock));
 		if (strpos($error, "successfully") === false) {
 			$error = " Error: " . $error;
@@ -18,7 +20,7 @@ class Request {
 			return $error;
 		}
 				
-		$this->write(sha1($pass));		
+		$this->write(sha1(PASS));		
 		
 		return "";
 	}

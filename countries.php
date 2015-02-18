@@ -253,7 +253,7 @@ class Countries {
         "ZM" => "Zambia",
         "ZW" => "Zimbabwe",
         "AX" => "Åland Islands",
-        "Unknown" => "Unknown",
+        "UNKNOWN" => "Unknown",
 	);
 	
 	

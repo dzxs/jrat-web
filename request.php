@@ -131,7 +131,7 @@ class Request {
  	
  	public function redirectError() {
  		if ($this->isError()) {
- 			header("Location: error.php?desc=" . str_replace(" Error: ", "", $this->sock));
+ 			// header("Location: error.php?desc=" . str_replace(" Error: ", "", $this->sock));
  			exit();
  		}
  	}

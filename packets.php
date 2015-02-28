@@ -1,4 +1,5 @@
 <?php
+	define("PACKET_DISCONNECT", -1);
 	define("PACKET_AUTH", 0);
 	define("PACKET_LIST", 1);
 	define("PACKET_SELECT", 5);

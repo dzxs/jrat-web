@@ -1,5 +1,6 @@
 <?php
 
+require_once "packets.php";
 require_once "slave.php";
 require_once "config.php";
 
@@ -26,7 +27,7 @@ class Request {
 	}
 	
 	public function getSlaves() {
-		$this->write(1);
+		$this->write(PACKET_LIST);
 		$raw = socket_read($this->sock, 1024 * 10, PHP_NORMAL_READ) or die("Could not read from socket\n");
 		
 		$slaveStrings = explode(";", $raw);
@@ -46,7 +47,7 @@ class Request {
 	}
 	
 	public function getOfflineClients() {
-		$this->write(14);	
+		$this->write(PACKET_LISTOFFLINE);	
 		$raw = socket_read($this->sock, 1024 * 10, PHP_NORMAL_READ) or die("Could not read from socket\n");
 
 		$rawStrings = explode(";", $raw);
@@ -80,7 +81,7 @@ class Request {
 	}
 	
 	public function getCountryStats() {
-		$this->write(12);
+		$this->write(PACKET_LISTCOUNTRIES);
 		$raw = socket_read($this->sock, 1024 * 10, PHP_NORMAL_READ) or die("Could not read from socket\n");
 		
 		$rawStrings = explode(";", $raw);
@@ -99,7 +100,7 @@ class Request {
 	}
 	
 	public function getOperatingSystemStats() {
-		$this->write(13);
+		$this->write(PACKET_LISTOPERATINGSYSTEMS);
 		$raw = socket_read($this->sock, 1024 * 10, PHP_NORMAL_READ) or die("Could not read from socket\n");
 	
 		$rawStrings = explode(";", $raw);
@@ -119,7 +120,7 @@ class Request {
 
 	
 	public function disconnect() {
-		$this->write(-1);
+		$this->write(PACKET_DISCONNECT);
 		socket_close($this->sock);
 	}
 	

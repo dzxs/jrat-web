@@ -1,6 +1,7 @@
 <?php
 xdebug_disable();
 
+require_once "packets.php";
 require_once "request.php";
 
 $request = new Request();
@@ -12,9 +13,22 @@ if (isset($_POST['id'])) {
 	$selectedid = $_POST['id'];
 	$checked = $_POST['checked'];
 	
-	$request->write(5);
+	$request->write(PACKET_SELECT);
 	$request->write($selectedid);
 	$request->write($checked);
+}
+
+if (isset($_GET['id'])) {
+	
+	if (isset($_GET['action'])) {
+		
+		$action = $_GET['action'];
+		
+		if ($action == "remove") {
+			$request->write(PACKET_REMOVE_OFFLINE);
+			$request->write($_GET['id']);
+		}
+	}
 }
 
 if (isset($_POST['select'])) {
@@ -190,7 +204,7 @@ $(document).ready(function() {
 						if (!$slave->isOffline()) {
 							echo printTableData("<a href='client.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");								
 						} else {
-							echo printTableData("<a href='client.php?id=" . $slave->getUniqueId() . "?action=remove'>Remove</a>");								
+							echo printTableData("<a href='clients.php?id=" . $slave->getUniqueId() . "&action=remove'>Remove</a>");								
 						}
 						
 						echo printTableData("<input class='box' id='update' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "' " . $checked . ">");

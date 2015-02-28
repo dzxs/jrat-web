@@ -1,7 +1,6 @@
 <?php
 xdebug_disable();
 
-require_once "packets.php";
 require_once "request.php";
 
 $request = new Request();
@@ -33,7 +32,7 @@ if (isset($_GET['id'])) {
 
 if (isset($_POST['select'])) {
 	if (isset($_POST['disconnect'])) {
-		$request->write(10);
+		$request->write(PACKET_DISCONNECT_CLIENT);
 		$request->write(count($_POST['select']));
 		foreach ($_POST['select'] as $slave) {
 			$request->write($slave);

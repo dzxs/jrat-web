@@ -3,7 +3,7 @@
 	define("PACKET_AUTH", 0);
 	define("PACKET_LIST", 1);
 	define("PACKET_SELECT", 5);
-	define("PACKET_DISCONNECT", 10);
+	define("PACKET_DISCONNECT_CLIENT", 10);
 	define("PACKET_LISTCOUNTRIES", 12);
 	define("PACKET_LISTOPERATINGSYSTEMS", 13);
 	define("PACKET_LISTOFFLINE", 14);

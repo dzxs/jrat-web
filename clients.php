@@ -186,7 +186,13 @@ $(document).ready(function() {
 						echo printTableData($slave->getOperatingSystem());
 						echo printTableData($slave->getVersion());
 						echo printTableData($slave->getPing());
-						echo printTableData("<a href='client.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");
+
+						if (!$slave->isOffline()) {
+							echo printTableData("<a href='client.php?id=" . $slave->getUniqueId() . "'>Control Panel</a>");								
+						} else {
+							echo printTableData("<a href='client.php?id=" . $slave->getUniqueId() . "?action=remove'>Remove</a>");								
+						}
+						
 						echo printTableData("<input class='box' id='update' type='checkbox' name='select[$i]' value='" . $slave->getUniqueId() . "' " . $checked . ">");
 						echo "</tr>\n";
 					

@@ -62,7 +62,7 @@ class Request {
 			$s = new Slave();
 			$s->array = array(
 				"strid" => $data[2],
-				"id" => "0",
+				"id" => $data[7],
 				"selected" => "false",
 				"country" => $data[5],
 				"userstring" => $data[0],

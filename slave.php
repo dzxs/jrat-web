@@ -93,7 +93,7 @@ class Slave {
 	}
 	
 	public function isOffline() {
-		return $this->array['id'] == "0";
+		return substr($this->array['id'], 0, 1) == "-";
 	}
 	
 	public static function none() {

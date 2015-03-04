@@ -29,6 +29,7 @@ class OperatingSystem {
 			"OpenBSD" => "os_openbsd",
 			"FreeBSD" => "os_freebsd",
 			"NetBSD" => "os_netbsd",
+			"DragonFlyBSD" => "os_dragonflybsd",
 			"Solaris" => "os_solaris",
 			"Android" => "os_android",
 			"Other" => "os_unknown",

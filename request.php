@@ -10,17 +10,18 @@ class Request {
 	
 	public function createSocket() {
 		require_once "config.php";
-		
+						
 		$this->sock = socket_create(AF_INET, SOCK_STREAM, 0) or die("Could not create socket\n");
 		
 		socket_connect($this->sock, ADDRESS, PORT);
 		$error = socket_strerror(socket_last_error($this->sock));
-		if (strpos($error, "successfully") === false) {
+		if (strpos(strtolower($error), "success") === false) {
 			$error = " Error: " . $error;
-			$this->sock = $error;
+			$this->sock = $error;				
 			return $error;
 		}
-				
+		
+		
 		$this->write(sha1(PASS));		
 		
 		return "";
@@ -125,7 +126,7 @@ class Request {
 	}
 	
 	public function write($s) {
-		socket_write($this->sock, $s . "\n", strlen($s) + 1) or die("Failed to write to socket\n");
+		socket_write($this->sock, $s . "\n", strlen($s) + 1) or die("Could not write to socket\n");
 	}
 	
  	public function isError() {

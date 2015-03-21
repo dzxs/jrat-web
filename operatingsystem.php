@@ -3,6 +3,7 @@
 class OperatingSystem {
 
 	static $icons = array(
+			"Windows 10" => "os_win8",
 			"Windows 8" => "os_win8",
 			"Windows 8.1" => "os_win8",
 			"Windows 2000" => "os_win2000",
@@ -37,6 +38,7 @@ class OperatingSystem {
 			"Mandrake" => "dist_mandrake",
 			"Manjaro" => "dist_manjaro",
 			"LMDE" => "dist_lmde",
+			"OpenSUSE" => "dist_opensuse",
 			"Parabola" => "dist_parabola",
 			"Peppermint" => "dist_peppermint",
 			"RedHat Enterprise" => "dist_redhatenterprise",
@@ -47,10 +49,10 @@ class OperatingSystem {
 			"Trisquel" => "dist_trisquel",
 			"Viperr" => "dist_viperr",			
 			"Linux" => "os_linux",
-			"OpenBSD" => "os_openbsd",
-			"FreeBSD" => "os_freebsd",
-			"NetBSD" => "os_netbsd",
-			"DragonFlyBSD" => "os_dragonflybsd",
+			"OpenBSD" => "bsd_openbsd",
+			"FreeBSD" => "bsd_freebsd",
+			"NetBSD" => "bsd_netbsd",
+			"DragonFlyBSD" => "bsd_dragonflybsd",
 			"Solaris" => "os_solaris",
 			"Android" => "os_android",
 			"Other" => "os_unknown",

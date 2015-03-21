@@ -4,6 +4,7 @@ class OperatingSystem {
 
 	static $icons = array(
 			"Windows 10" => "os_win8",
+			"Windows Server 2012" => "os_win8",
 			"Windows 8" => "os_win8",
 			"Windows 8.1" => "os_win8",
 			"Windows 2000" => "os_win2000",
@@ -15,7 +16,7 @@ class OperatingSystem {
 			"CentOS" => "dist_centos",
 			"Debian" => "dist_debian",
 			"elementary OS" => "dist_elementaryos",
-			"Mint" => "dist_mint",
+			"Linux Mint" => "dist_mint",
 			"Slackware" => "dist_slackware",
 			"Arch" => "dist_arch",
 			"Gentoo" => "dist_gentoo",

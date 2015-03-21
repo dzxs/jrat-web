@@ -74,9 +74,11 @@ cont:
 	</div>
 		
 		<?php 
-			$size = 5;
-			foreach ($array as $slave) {
-				require "tabledata.php";
+			if (isset($array)) {
+				$size = 5;
+				foreach ($array as $slave) {
+					require "tabledata.php";
+				}
 			}
 		?>
 
